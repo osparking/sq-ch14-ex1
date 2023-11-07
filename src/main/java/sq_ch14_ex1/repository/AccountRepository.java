@@ -10,10 +10,13 @@ import org.springframework.data.repository.CrudRepository;
 import sq_ch14_ex1.model.Account;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
-	@Query("select * from account where name = :name")
-	List<Account> findByName(String name);
+	@Query("select * from account where name=:custname")
+	List<Account> findAccountsByCustname(String custname);
 	
 	@Query("update account set amount = :amount where id = :id ")
 	@Modifying
 	void changeAmount(long id, BigDecimal amount);
+
+	@Query("select * from account where amount > :amountAbove")
+	List<Account> findAccountAboveAmount(BigDecimal amountAbove);
 }

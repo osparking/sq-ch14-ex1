@@ -1,5 +1,6 @@
 package sq_ch14_ex1.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -35,8 +36,17 @@ public class TransferService {
 		return repository.findAll();
 	}
 	
-	public List<Account> findByName(String name) {
-		return repository.findByName(name);
+	public List<Account> findAccountsByCustname(String name) {
+		return repository.findAccountsByCustname(name);
+	}
+
+	public Account findAccountById(Long id) {
+		return repository.findById(id).orElseThrow(
+				()->new AccountNotFoundException());
+	}
+
+	public List<Account> findAccountAboveAmount(BigDecimal amountAbove) {
+		return repository.findAccountAboveAmount(amountAbove);
 	}
 
 }
