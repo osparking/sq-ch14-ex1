@@ -26,7 +26,7 @@ public class TransferService {
 
 		var senderAmt = optSender.getAmount().subtract(request.getAmount());
 		var receiverAmt = optReceiver.getAmount();
-		receiverAmt.add(request.getAmount());
+		receiverAmt = receiverAmt.add(request.getAmount());
 
 		repository.changeAmount(request.getSenderId(), senderAmt);
 		repository.changeAmount(request.getReceiverId(), receiverAmt);
